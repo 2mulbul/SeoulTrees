@@ -26,3 +26,4 @@ smallTrees.forEach(tree => {
 		smallTreeName.classList.remove("show");
 	})
 })
+
