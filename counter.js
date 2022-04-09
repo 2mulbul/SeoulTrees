@@ -1,9 +1,9 @@
-let monthInfo= document.querySelector('#monthInfo');
-let yearInfo= document.querySelector('#yearInfo');
+let monthInfo= document.querySelector('#month-info');
+let yearInfo= document.querySelector('#year-info');
 
 
-let pausebutton = document.querySelector("#playPause");
-let refreshbutton = document.querySelector("#update");
+let pausebutton = document.querySelector(".time-container");
+let timeButton = document.querySelector(".time-container");
 
 var startTime;
 var updatedTime;
@@ -75,23 +75,26 @@ function counter() {
 }
 
 
-pausebutton.addEventListener("click", PauseResumeTimer);
-pausebutton.addEventListener("click", () => {
-    if (!difference) {
-    } else if (!paused) {
-        pausebutton.innerHTML = "pause";
-    } else {
-        pausebutton.innerHTML = "play_arrow";
+timeButton.addEventListener("mouseover", () => {
+    bigTreeName.innerHTML = "처음부터 볼까요?";
+    bigTreeName.style.color = "#ffffff";
 
+    gsap.to(bigTreeName, 0.2, { opacity: 1, ease: Power3.easeInOut });
+})
+timeButton.addEventListener("click", () => {
+    resetTimer();
+    for (let i = 0; i < high; i++) {
+        treeArray[i].changePos();
     }
 });
-
-refreshbutton.addEventListener("click", resetTimer);
-refreshbutton.addEventListener("click", () => {
-    refreshbutton.innerHTML = "auto_awesome";
+timeButton.addEventListener("click", () => {
+    //var tl = gsap.Timeline();
+    //tl.to(bigTreeName, 0.2, { opacity: 1, ease: Power3.easeInOut });
+    bigTreeName.innerHTML = "시작!"
     setTimeout(() => {
-        refreshbutton.innerHTML = "skip_previous";
-        
-    }, 500);
-    
+        bigTreeName.innerHTML = "처음부터 볼까요?";
+    }, 1500);
 });
+timeButton.addEventListener("mouseleave", () => {
+    gsap.to(bigTreeName, 0.2, { opacity: 0, ease: Power3.easeInOut });
+})

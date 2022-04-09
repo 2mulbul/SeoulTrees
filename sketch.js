@@ -28,9 +28,7 @@ let Yongsan;
 
 let arr2006;
 let arr2006Sort;
-let obj = [];
-let entries = [];
-let sorted = [];
+
 let bestTree_name = [];
 let bestTree_count = [];
 let year;
@@ -46,14 +44,6 @@ let flowerArray = [];
 
 let selectedDistrict;
 let namingDistrict;
-
-//const titleBar = document.querySelector(".titlebar");
-const radioList = document.querySelectorAll(".radio");
-let districtInfo = document.querySelector(".district-info");
-
-
-
-
 
 
 //wrap은 크기조절 get은 색조정
@@ -88,8 +78,8 @@ function preload() {
 
 	//roadData
 	RoadData = loadTable('data/roadsGather_2006_2019.csv', 'csv', 'header');
-
 }
+
 
 function setup() {
 	startTimer();
@@ -106,14 +96,11 @@ function setup() {
 		let posY = random(height/3, height/3 * 2);
 		treeArray.push(new Tree(posX, posY));
 		flowerArray.push(new Flower(posX, posY));
-		//treeArray[0].mouseOver(mouseOverInfo);
 	}
 
 	resetYear(year, selectedDistrict, namingDistrict);
 	
 }
-
-
 
 
 //district-selectbox 지역선택
@@ -187,23 +174,32 @@ radioList.forEach(o => {
 		namingDistrict = o.id;
 		const labelSelector = 'label[for=' + namingDistrict + ']';
 		districtInfo.innerHTML = document.querySelector(labelSelector).innerHTML;
+		for (i = 0; i < radioList.length; i++) {
+			radioList[i].parentNode.classList.remove("now-selected");
+		}
+		o.parentNode.classList.add("now-selected");
 		// resetDistrict(selectedDistrict);
 		resetYear(year,selectedDistrict,namingDistrict);
-		sidebar.classList.toggle(spreadClass);
+		//projectInfo.classList.toggle(spreadClass);
+		for (let i = 0; i < high; i++) {
+			treeArray[i].changePos();
+		}
 	})
+
+	if (districtInfo.innerHTML == o.nextElementSibling.innerHTML) { 
+		o.parentNode.classList.add("now-selected");
+	} 
 })
+
+
+const roadsSumInfo = document.querySelector(".roads-sum-info");
+const treesSumInfo = document.querySelector(".trees-sum-info");
+
 const largeTreesBox = document.querySelectorAll(".tree-container");
 const largeTreesPath = document.querySelectorAll(".tree-container path");
 const bigTreeName = document.querySelector(".big-tree-name");
 const bigTreeNumber = document.querySelector(".big-tree-number");
 const infoBubble = document.querySelector(".info-bubble");
-
-
-
-function mouseOverInfo() {
-	console.log("mouseOver");
-}
-
 
 function resetYear(_year,_selectedDistrict,_namingDistrict) {
 	year = _year;
@@ -213,12 +209,45 @@ function resetYear(_year,_selectedDistrict,_namingDistrict) {
 	//도로 그리기
 	road.init(year, namingDistrict);
 
-	//가장 많은 수종이름과 수량(bestTree) 구하기
+	let obj = [];
+	let entries = [];
+	const treeSumArray = [];
+
+	const prop = '기타';
+	const objWithoutEtc = {};
+	const entriesWithoutEtc = [];
+	const sorted = [];
+
+	//가로수 기본 정보 - 가로수 수량 총합, bestTree 구하기
 	for (let i = 0; i < selectedDistrict.getRowCount(); i++) {
+		//기타 포함, 가로수 수량 총합
 		obj[i] = selectedDistrict.getRow(i).obj;
 		entries[i] = Object.entries(obj[i]);
-		sorted[i] = entries[i].sort((a, b) => b[1] - a[1]);
+		treeSumArray[i] = entries[i];
+
+		for (let j = 0; j < selectedDistrict.getColumnCount(); j++) { 
+			treeSumArray[i][j] = Number(entries[i][j][1]);
+		}
+
+		//기타 제외, 가장 많은 수종이름과 수량(bestTree)
+		objWithoutEtc[i] = Object.keys(obj[i]).reduce((object, key) => {
+			if (key !== prop) { object[key] = obj[i][key] }
+			return object
+		}, {});
+		entriesWithoutEtc[i] = Object.entries(objWithoutEtc[i]);
+		sorted[i] = entriesWithoutEtc[i].sort((a, b) => b[1] - a[1]);
 	}
+
+	const roadSum = RoadData.getString(year, namingDistrict);
+	const treeSum = [];
+
+	treeSum[year] = treeSumArray[year].reduce(function add(sum, currValue) {
+		return sum + currValue;
+	}, 0);
+	treesSumInfo.innerHTML = "가로수 " + treeSum[year] + "그루";
+	roadsSumInfo.innerHTML = "노선 " + roadSum + "개";
+
+
 	for (let j = 0; j < high; j++) {
 		bestTree_name[j] = sorted[year][j][0];
 		bestTree_count[j] = sorted[year][j][1];
@@ -228,13 +257,9 @@ function resetYear(_year,_selectedDistrict,_namingDistrict) {
 	//bestTree 5개에 포함되는 경우 이미지 그리기
 	let cn = 0;
 	for (let j = 0; j < high; j++) {
-		//console.log(bestTree_name[j]);
-		for (let k = 0; k < selectedDistrict.getColumnCount(); k++) {
+		//기타 제외를 위해 selectedDistrict.getColumnCount()-1
+		for (let k = 0; k < selectedDistrict.getColumnCount()-1; k++) {
 			if (selectedDistrict.columns[k] == bestTree_name[j]) {
-				// console.log(k + ":" + bestTree_name[j]);
-				// for (cn = 0; cn < high; cn++) {
-				//   treeArray[cn].init(year, k);
-				// }
 				if (cn == 0) {
 					treeArray[0].init(year, k);
 					flowerArray[0].init(year, k, 0);
@@ -261,7 +286,7 @@ function resetYear(_year,_selectedDistrict,_namingDistrict) {
 		}
 	}
 	//bestTree 5개에 포함되지 않는 경우 이미지 다시 숨기기
-	for (let k = 0; k < selectedDistrict.getColumnCount(); k++) { 
+	for (let k = 0; k < selectedDistrict.getColumnCount()-1; k++) { 
 		if (selectedDistrict.columns[k] !== bestTree_name[0]
 			&& selectedDistrict.columns[k] !== bestTree_name[1]
 			&& selectedDistrict.columns[k] !== bestTree_name[2]
@@ -294,9 +319,9 @@ function resetYear(_year,_selectedDistrict,_namingDistrict) {
 						bigTreeName.style.color = treeColor;
 						bigTreeNumber.style.color = treeColor;
 					}
-					
-					bigTreeName.classList.add("show");
-					bigTreeNumber.classList.add("show");
+					gsap.to([bigTreeName, bigTreeNumber], 0.2, { opacity: 1, ease: Power3.easeInOut });
+					//bigTreeName.classList.add("show");
+					//bigTreeNumber.classList.add("show");
 				}
 			}
 		})
@@ -304,21 +329,24 @@ function resetYear(_year,_selectedDistrict,_namingDistrict) {
 	//나무 정보 버블 사라지기(마우스아웃 범위 좀 더 크게 해서 깜빡거리기 방지)
 	largeTreesBox.forEach(treeBox => {
 		treeBox.addEventListener("mouseleave", (e) => {
-			bigTreeName.innerHTML = "도로노선수";
-			bigTreeNumber.innerHTML = road.weight + "개";
-			bigTreeName.style.color = "#ffffff";
-			bigTreeNumber.style.color = "#ffffff";
-			//bigTreeName.classList.remove("show");
-			//bigTreeNumber.classList.remove("show");
+			//bigTreeName.innerHTML = "도로노선수";
+			//bigTreeNumber.innerHTML = road.weight + "개";
+			//bigTreeName.style.color = "#ffffff";
+			//bigTreeNumber.style.color = "#ffffff";
+			////bigTreeName.classList.remove("show");
+			////bigTreeNumber.classList.remove("show");
+			gsap.to([bigTreeName, bigTreeNumber], 0.2, { opacity: 0, ease: Power3.easeInOut });
+
 		})
 	})
+
 }
 //나무 정보 버블 마우스 따라다니기
 window.addEventListener("mousemove", (e) => { 
-	bigTreeName.style.left = e.clientX + 20 + "px";
-	bigTreeName.style.top = e.clientY + 20  + "px";
-	bigTreeNumber.style.left = e.clientX + 20  + "px";
-	bigTreeNumber.style.top = e.clientY + 60  + "px";
+	bigTreeName.style.left = e.clientX + 15 + "px";
+	bigTreeName.style.top = e.clientY + 15  + "px";
+	bigTreeNumber.style.left = e.clientX + 15  + "px";
+	bigTreeNumber.style.top = e.clientY + 57  + "px";
 })
 
 const strum = 2.5;
@@ -363,7 +391,7 @@ class Roads {
 
 //나무 이미지 크기 조정
 const controlSize = 0.23;
-const sidebarWidth = parseFloat(getComputedStyle(sidebar).getPropertyValue("--sidebar-width")) * 10;
+const projectInfoWidth = parseFloat(getComputedStyle(projectInfo).getPropertyValue("--project-info-width")) * 10;
 const speedArray = [ -0.7, -0.6, -0.55, -0.5, -0.4, 0.4, 0.5, 0.55, 0.6, 0.7 ];
 
 
@@ -408,14 +436,16 @@ class Tree {
 				this.vy = -this.vy;
 			}
 		} else {
-			if (this.x - this.size/2 + this.vx < sidebarWidth || this.x + this.size/2 + this.vx > width) {
+			if (this.x - this.size/2 + this.vx < projectInfoWidth || this.x + this.size/2 + this.vx > width) {
 				this.vx = -this.vx;
 			} else if (this.y - this.size/2 + this.vy < 0 || this.y + this.size/2 + this.vy > height) {
 				this.vy = -this.vy;
 			}
 		}
-		
-
+	}
+	changePos() { 
+		this.x = random(width/3, width/3 * 2);
+		this.y = random(height/3, height/3 * 2);
 	}
 }
 

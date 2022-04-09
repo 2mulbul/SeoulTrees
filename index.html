@@ -30,7 +30,135 @@
 
 <body>
 	<div class="page-container">
-		<div class="sidebar">
+		<img class="logo-style" id="logo-icon" src="treeSvg/왕벚나무.svg"></img>
+		<div class="sum-container">
+			<div class="bubble-common-style roads-sum-info">노선 개</div>
+			<div class="bubble-common-style trees-sum-info">가로수 그루</div>
+		</div>
+		<div class="info-container">
+			<div class="info-style district-info" >영등포구</div>
+			<div class="info-style time-container">
+				<div id="year-info">2006년</div>
+				<div id="month-info">1월</div>
+			</div>
+
+		</div>
+
+
+		<div class="district-selectbox">
+			<div class="search">
+				<input type="text" placeholder="우리 동네 찾기">
+				<img src="./icon/search_outline2.svg" class="search-icon" alt="" srcset="">
+			</div>
+			<div class="options-container">
+				
+				<div class="option">
+					<input type="radio" class="radio" id="Gangnam" name="category" />
+					<label for="Gangnam">강남구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Gangdong" name="category" />
+					<label for="Gangdong">강동구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Gangbuk" name="category" />
+					<label for="Gangbuk">강북구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Gangseo" name="category" />
+					<label for="Gangseo">강서구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Gwanak" name="category" />
+					<label for="Gwanak">관악구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Gwangjin" name="category" />
+					<label for="Gwangjin">광진구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Guro" name="category" />
+					<label for="Guro">구로구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Geumcheon" name="category" />
+					<label for="Geumcheon">금천구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Nowon" name="category" />
+					<label for="Nowon">노원구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Dobong" name="category" />
+					<label for="Dobong">도봉구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Dongdaemun" name="category" />
+					<label for="Dongdaemun">동대문구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Dongjak" name="category" />
+					<label for="Dongjak">동작구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Mapo" name="category" />
+					<label for="Mapo">마포구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Seodaemun" name="category" />
+					<label for="Seodaemun">서대문구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Seocho" name="category" />
+					<label for="Seocho">서초구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Seongdong" name="category" />
+					<label for="Seongdong">성동구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Seongbuk" name="category" />
+					<label for="Seongbuk">성북구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Songpa" name="category" />
+					<label for="Songpa">송파구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Yangcheon" name="category" />
+					<label for="Yangcheon">양천구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Yeongdeungpo" name="category" />
+					<label for="Yeongdeungpo">영등포구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Yongsan" name="category" />
+					<label for="Yongsan">용산구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Eunpyeong" name="category" />
+					<label for="Eunpyeong">은평구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Jongno" name="category" />
+					<label for="Jongno">종로구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Jung" name="category" />
+					<label for="Jung">중구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Jungnang" name="category" />
+					<label for="Jungnang">중랑구</label>
+				</div>
+				<div class="option">
+					<input type="radio" class="radio" id="Seoul" name="category" />
+					<label for="Seoul">서울시</label>
+				</div>
+			</div>       
+		</div>
+		<div class="project-info">
 			<div class="header">
 				<div class="banner-container">
 					<img class="small-trees header-trees" id="은행나무" src="treeSvg/은행나무.svg"></img>
@@ -47,6 +175,10 @@
 			<div class="center">
 				<div class="project-explain">
 					<div class="explain-wrapper">
+						<div class="back-button-wrap">
+							<img src="./icon/arrow_back1.svg" class="back-icon back-button" alt="" srcset="">
+							<div class="bubble-common-style back-info">돌아갈까요?</div>
+						</div>
 						<div class="part-wrapper">
 							<div class="explain-container" id="about">
 								<h class="heading" id="about-heading">프로젝트 소개</h>
@@ -95,125 +227,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="district-selectbox">
-					<div class="options-container">
-						<div class="search">
-							<input type="text" placeholder="지역 찾기">
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Seoul" name="category" />
-							<label for="Seoul">서울시</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Gangnam" name="category" />
-							<label for="Gangnam">강남구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Gangdong" name="category" />
-							<label for="Gangdong">강동구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Gangbuk" name="category" />
-							<label for="Gangbuk">강북구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Gangseo" name="category" />
-							<label for="Gangseo">강서구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Gwanak" name="category" />
-							<label for="Gwanak">관악구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Gwangjin" name="category" />
-							<label for="Gwangjin">광진구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Guro" name="category" />
-							<label for="Guro">구로구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Geumcheon" name="category" />
-							<label for="Geumcheon">금천구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Nowon" name="category" />
-							<label for="Nowon">노원구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Dobong" name="category" />
-							<label for="Dobong">도봉구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Dongdaemun" name="category" />
-							<label for="Dongdaemun">동대문구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Dongjak" name="category" />
-							<label for="Dongjak">동작구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Mapo" name="category" />
-							<label for="Mapo">마포구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Seodaemun" name="category" />
-							<label for="Seodaemun">서대문구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Seocho" name="category" />
-							<label for="Seocho">서초구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Seongdong" name="category" />
-							<label for="Seongdong">성동구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Seongbuk" name="category" />
-							<label for="Seongbuk">성북구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Songpa" name="category" />
-							<label for="Songpa">송파구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Yangcheon" name="category" />
-							<label for="Yangcheon">양천구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Yeongdeungpo" name="category" />
-							<label for="Yeongdeungpo">영등포구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Yongsan" name="category" />
-							<label for="Yongsan">용산구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Eunpyeong" name="category" />
-							<label for="Eunpyeong">은평구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Jongno" name="category" />
-							<label for="Jongno">종로구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Jung" name="category" />
-							<label for="Jung">중구</label>
-						</div>
-						<div class="option">
-							<input type="radio" class="radio" id="Jungnang" name="category" />
-							<label for="Jungnang">중랑구</label>
-						</div>
-					</div>        
-				</div>
-				<div class="titlebar">
-					<div class="titlebar__project-title ">서울트리즈</div>
-					<div class="titlebar__icon-container ">
-						<div class="material-icons-outlined md-32 forward-arrow">
-						arrow_forward_ios
-						</div>
-					</div>
-				</div>
+
 			</div>
 			<div class="footer">
 				<div class="banner-container">
@@ -230,25 +244,15 @@
 
 				</div>
 			</div>
-			<div class="small-tree-name">왕벚나무</div>
+			<div class="bubble-common-style small-tree-name">왕벚나무</div>
 		</div>
-		<div class="info-container">
-			<div class="info-style mainitems district-info" >영등포구</div>
-			<div class="info-style time-container">
-				<div class="time">
-					<div id="yearInfo"  class="mainitems">2006년</div>
-					<div id="monthInfo" class="mainitems">1월</div>
-				</div>
-				<span id="playPause" class="material-icons-outlined md-32 time-items" >pause</span>
-				<span id="update" class="material-icons-outlined md-32 time-items" >skip_previous</span>
-			</div>
-		</div>
+
 	</div>
 
 
 	<div class="info-bubble">
-		<div class="big-tree-name">은행나무</div>
-		<div class="big-tree-number">nnnn그루</div>
+		<div class="bubble-common-style big-tree-name">은행나무</div>
+		<div class="bubble-common-style big-tree-number">nnnn그루</div>
 	</div>
 
 	<div class="tree-container hidden" id="tree1-container">
@@ -440,39 +444,9 @@
 		</svg>
 	</div>
 
-
-	<div class='flower-container'>
-		<svg class='flower' viewBox="0 0 50 50">
-			<ellipse cx="25" cy="25" rx="25" ry="25" />
-		</svg>
-	</div>
-
-	<div class='flower-container'>
-		<svg class='flower' viewBox="0 0 50 50">
-			<ellipse cx="25" cy="25" rx="25" ry="25" />
-		</svg>
-	</div>
-
-	<div class='flower-container'>
-		<svg class='flower' viewBox="0 0 50 50">
-			<ellipse cx="25" cy="25" rx="25" ry="25" />
-		</svg>
-	</div>
-
-	<div class='flower-container'>
-		<svg class='flower' viewBox="0 0 50 50">
-			<ellipse cx="25" cy="25" rx="25" ry="25" />
-		</svg>
-	</div>
-
-	<div class='flower-container'>
-		<svg class='flower' viewBox="0 0 50 50">
-			<ellipse cx="25" cy="25" rx="25" ry="25" />
-		</svg>
-	</div>
-
-
-
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="projectInfo.js"></script>
 	<script src="districtSelect.js"></script>
 	<script src="sketch.js"></script>
 	<script src="counter.js"></script>
