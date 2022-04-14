@@ -9,8 +9,6 @@
 @font-face {
   font-family: 'Arita-dotum-Light';
   src: url('font/Montserrat-Light.ttf') format('truetype');
-  /*src: url('font/Arita4.0_M.eot') format('embeddedopentype');
-  src: url('font/Arita4.0_M.woff') format('woff');*/
   unicode-range: U+0030-0039;
   font-weight: normal;
   font-style: normal;
@@ -27,8 +25,6 @@
 @font-face {
   font-family: 'Arita-dotum-Medium';
   src: url('font/Montserrat-Light.ttf') format('truetype');
-  /*src: url('font/Arita4.0_M.eot') format('embeddedopentype');
-  src: url('font/Arita4.0_M.woff') format('woff');*/
   unicode-range: U+0030-0039;
   font-weight: normal;
   font-style: normal;
@@ -81,6 +77,21 @@ html, body {
   
     /* Support for IE. */
     font-feature-settings: 'liga';
+}
+.start-title{
+  z-index:9998;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  left:50%;
+  top:50%;
+  /*width: 695px;*/
+}
+.my-info{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 2.7rem;
+  text-align: center;
+/*text-shadow: 0px 0px 0.5px rgba(0,0,0,1);*/
 }
 .page-container {
   height:inherit;
