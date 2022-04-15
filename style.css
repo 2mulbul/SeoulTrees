@@ -93,6 +93,24 @@ html, body {
   text-align: center;
 /*text-shadow: 0px 0px 0.5px rgba(0,0,0,1);*/
 }
+.right-reserved {
+  z-index:9998;
+  position: absolute;
+  right: 2rem;
+  bottom:1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+  text-align: right;
+  cursor: pointer;
+}
+.right-reserved a{
+  text-decoration: none;
+  color: black
+}
+.rocket-icon{
+  font-size: 1.6rem;
+}
 .page-container {
   height:inherit;
 }
