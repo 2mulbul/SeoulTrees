@@ -439,6 +439,11 @@ html, body {
   transform: rotate(-0.04deg);
   color: #fc0;
 }
+.link-info{
+  position:absolute;
+  transform: rotate(-0.04deg) translateX(-50%) !important;
+  color: white;
+}
 .part-wrapper{
   width:47.5%;
   overflow-y: scroll;
@@ -459,7 +464,10 @@ html, body {
   /*height:100px;*/
   word-break: keep-all;
   /*background-color:tan;*/
-
+}
+#datasource-body a{
+  text-decoration: none;
+  color: black;
 }
 .how-detail-container{
   display: flex;

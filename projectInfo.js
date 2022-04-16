@@ -42,4 +42,35 @@ backButton.addEventListener("mouseleave", () => {
 	
 	backTl.to(backInfo, 0.3, { opacity: 0 }, 0)
 		.to(backInfo, 0, { visibility: "hidden" });
+});
+
+const header = document.querySelector(".header")
+const linkInfo = document.querySelector(".link-info");
+const links = document.querySelectorAll("#datasource-body a");
+
+const linkTl = gsap.timeline();
+gsap.set(linkInfo, { opacity: 0, visibility: "hidden" });
+links.forEach(link => {
+	link.addEventListener("mouseover", () => {
+		let rect = link.getBoundingClientRect();
+		let Xdis = rect.left + rect.width / 2;
+		let Ydis = rect.top - header.getBoundingClientRect().height;
+		console.log(link.style.height);
+
+		linkInfo.style.left = Xdis + "px";
+		linkInfo.style.top =  Ydis - linkInfo.getBoundingClientRect().height -10  + "px";
+
+		linkTl.clear();
+		linkTl.restart();
+		linkTl.to(linkInfo, 0, { visibility: " visible" }, 0)
+			.to(linkInfo, 0.3, { opacity: 1 }, 0.1);
+
+	});
+	link.addEventListener("mouseleave", () => {
+		linkTl.clear();
+		linkTl.restart();
+		
+		linkTl.to(linkInfo, 0.3, { opacity: 0 }, 0)
+			.to(linkInfo, 0, { visibility: "hidden" });
+	})
 })
